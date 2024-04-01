@@ -1,0 +1,15 @@
+
+ - name: Install Firewall (Ubuntu)
+   apt:
+     name: ufw
+     state: present
+
+ - name: Enable Firewall (Ubuntu)
+   service:
+     name: ufw
+     state: started
+
+ - name: Configure Firewall Rules
+   ufw:
+     rule: allow
+     state: enabled

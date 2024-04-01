@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: INSTALL UPDATES (UBUNTU)
+    tags: always
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+  - name: UPDATE REPOSITORY INDEX (CENTOS)
+    tags: always
+    dnf:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "CentOS"
+
+- hosts: Ubuntu_servers
+  become: true
+  roles:
+    - Ubuntu
+
+- hosts: CentOS_servers
+  become: true
+  roles:
+    - CentOS

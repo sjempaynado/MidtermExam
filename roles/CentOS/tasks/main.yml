@@ -1,0 +1,17 @@
+
+ - name: Install Firewall (CentOS)
+   yum:
+     name: firewalld
+     state: present
+
+ - name: Enable Firewall (CentOS)
+   service:
+     name: firewalld
+     state: started
+
+
+ - name: Configure Firewall Rules
+   firewalld:
+     zone: public
+     service: ssh
+     state: enabled
